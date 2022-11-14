@@ -1,20 +1,28 @@
 import { Box, Button, Card, Typography } from "@mui/material"
 import classes from "./productCard.module.css";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useDispatch } from "react-redux";
+import { shopActions } from "../../../../redux/slices/shop";
 
-const ProductCard = () => {
+const ProductCard = ({ data }) => {
+const dispatch = useDispatch();
+
+    const addToCart = () => {
+        dispatch(shopActions.addToCart(data.id));
+    }
+
     return (
         <Card className={classes.container}>
             <Box display="flex" justifyContent="space-between">
-                <Typography variant="h6" color="primary">dxiojxiowejocij</Typography>
-                <Typography variant="h6">Rs.1899</Typography>
+                <Typography variant="h6" color="primary">{data.title}</Typography>
+                <Typography variant="h6">Rs.{data.price}</Typography>
             </Box>
             <Typography variant="body2" color="GrayText">
-                dnewiuhdci uwehciudhfevf evervververvvvvvv vvvvvvvvvvvvvvvvvv vvvvvvvvvvvvvvv vvvvvvvvvvvvvvvvvvvv vvvvvvvv vvvvvwecfwec evefewfwef
+                {data.desc}
             </Typography>
-            <Box  display="flex" justifyContent="space-between" alignItems="center">
-                <Typography variant="body2">Qty Units: 4</Typography>
-                <Button startIcon={<ShoppingCartIcon/>}>
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+                <Typography variant="body2">Qty Units: {data.qty}</Typography>
+                <Button startIcon={<ShoppingCartIcon />} onClick={addToCart}>
                     Add to Cart
                 </Button>
             </Box>
