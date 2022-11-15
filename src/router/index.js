@@ -2,6 +2,7 @@ import React from "react";
 import NotFound from "../pages/NotFound";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "../pages/Homepage";
+import Cart from "../pages/Cart";
 
 const Router = () => {
   return (
@@ -10,6 +11,10 @@ const Router = () => {
         <Route
           path="/home"
           element={<HomePage />}
+        />
+        <Route
+          path="/cart"
+          element={<Cart />}
         />
         <Route
           exact
